@@ -9,7 +9,7 @@
 </head>
 <body style="background-color: orange;">
     <div class="container mt-5">
-    <h1 class="text-center mb-4 p-3 bg-#1e293b text-white rounded" >TO-DO-LIST APP</h1>
+    <h1 class="text-center mb-4 p-3 bg-primary text-white rounded" >TO-DO-LIST APP</h1>
     <p>This is a simple to-do list application built with Flask. You can add, edit, and delete tasks to keep track of your daily activities.</p>
 
     <form action="/add" method="POST">
@@ -26,11 +26,11 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    <a href="/" class="btn btn-outline-primary">All Tasks</a>
+    <a href="/" class="btn btn-outline-dark">All Tasks</a>
 
-    <a href="/completed" class="btn btn-outline-success">Completed</a>
+    <a href="/completed" class="btn btn-outline-dark">Completed</a>
 
-    <a href="/pending" class="btn btn-outline-danger">Pending</a>
+    <a href="/pending" class="btn btn-outline-dark">Pending</a>
    <table class="table table-hover table-bordered bg-white mt-4">
 
     <tr>
