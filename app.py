@@ -1,5 +1,7 @@
 from flask import Flask,flash,render_template,request,redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
@@ -8,6 +10,8 @@ db = SQLAlchemy(app)
 class Todo(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     task=db.Column(db.String(200))
+    completed=db.Column(db.Boolean,default=False)
+    created_at=db.Column(db.DateTime,default=datetime.utcnow)
 with app.app_context():
     db.create_all()
 @app.route('/')
@@ -44,5 +48,21 @@ def edit(id):
         return redirect(url_for('home'))
 
     return render_template('edit.html', todo=task_to_edit)
+@app.route('/complete/<int:id>')
+def complete(id):
+    task_to_complete=Todo.query.get(id)
+    task_to_complete.completed=True
+    db.session.commit()
+    flash('Task marked as completed!')
+    return redirect(url_for('home'))
+@app.route('/completed')
+def completed():
+    todos = Todo.query.filter_by(completed=True).all()
+    return render_template('index.html', todos=todos)
+@app.route('/pending')
+def pending():
+    todos = Todo.query.filter_by(completed=False).all()
+    return render_template('index.html', todos=todos)
+
 if __name__ == '__main__':
     app.run(debug=True)
