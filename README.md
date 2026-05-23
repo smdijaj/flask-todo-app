@@ -32,3 +32,20 @@ python app.py
 ```
 
 ## Screenshots
+## Screenshots
+
+### Home Page
+
+![Home](screenshots/home.png)
+
+### Completed Tasks
+
+![Completed](screenshots/completed.png)
+
+### pending Tasks
+
+![pending](screenshots/pending.png)
+
+### Edit page
+
+![Edit](screenshots/edit.png)
