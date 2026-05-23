@@ -8,9 +8,15 @@
 
 </head>
 <body>
+    <form action="/add" method="POST">
+        <input type="text" name="task" placeholder="Enter a new task..." required>
+        <button type="submit">Add Task</button>
+    </form>
     <h1>TO-DO-LIST APP</h1>
     <p>This is a simple to-do list application built with Flask. You can add, edit, and delete tasks to keep track of your daily activities.</p>
-    
+    {% for todo in todos %}
+        <p>{{ todo.task }} <a href="/delete/{{ todo.id }}">Delete</a> <a href="/edit/{{ todo.id }}">Edit</a></p>
+    {% endfor %}
 
 </body>
 </html>
